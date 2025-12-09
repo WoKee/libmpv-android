@@ -32,9 +32,6 @@ cpuflags=
 	--disable-{stripping,doc,programs} \
 	--disable-{muxers,encoders,devices,filters} \
 	--disable-v4l2-m2m
-	--enable-demuxer=dash \
-	--enable-protocol=https \
-	--enable-libxml2 \
 
 make -j$cores
 make DESTDIR="$prefix_dir" install
