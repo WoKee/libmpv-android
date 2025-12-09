@@ -25,7 +25,7 @@ mkdir -p deps && cd deps
 [ ! -d harfbuzz ] && git clone --depth 1 --branch $v_harfbuzz https://github.com/harfbuzz/harfbuzz.git harfbuzz
 
 # libxml2
-[ ! -d libxml2 ] && git clone --depth 1 --branch v$v_libxml2 --recurse-submodules https://gitlab.gnome.org/GNOME/libxml2.git libxml2
+[ ! -d libxml2 ] && git clone --depth 1 --branch $v_libxml2 --recurse-submodules https://gitlab.gnome.org/GNOME/libxml2.git libxml2
 
 # libunibreak
 if [ ! -d libunibreak ]; then
