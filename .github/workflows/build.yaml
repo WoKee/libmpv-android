@@ -1,6 +1,5 @@
 name: Build libmpv-android
 
-
 on: 
   push:
     branches:
@@ -13,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
       - name: Setup Java JDK
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v4
       - name: Symlink SDK
         working-directory: ./buildscripts
         run: |
@@ -29,8 +28,6 @@ jobs:
       - name: Download dependencies
         working-directory: ./buildscripts
         run: ./download.sh
-      - name: Make scripts executable
-        run: chmod +x ./buildscripts/scripts/*.sh
       - name: Apply patches
         working-directory: ./buildscripts
         run: ./patch.sh

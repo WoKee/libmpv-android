@@ -8,11 +8,11 @@ plugins {
 android {
     namespace = "dev.jdtech.mpv"
     compileSdk = 36
-    buildToolsVersion = "36.1.0"
-    ndkVersion = "29.0.14206865"
+    buildToolsVersion = "36.0.0"
+    ndkVersion = "28.2.13676358"
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
         consumerProguardFiles("proguard-rules.pro")
         externalNativeBuild {
             cmake {
@@ -28,13 +28,8 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "4.1.2"
+            version = "4.0.2"
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
