@@ -29,6 +29,8 @@ jobs:
       - name: Download dependencies
         working-directory: ./buildscripts
         run: ./download.sh
+      - name: Make scripts executable
+        run: chmod +x ./buildscripts/scripts/*.sh
       - name: Apply patches
         working-directory: ./buildscripts
         run: ./patch.sh
