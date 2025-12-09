@@ -24,6 +24,17 @@ mkdir -p deps && cd deps
 # harfbuzz
 [ ! -d harfbuzz ] && git clone --depth 1 --branch $v_harfbuzz https://github.com/harfbuzz/harfbuzz.git harfbuzz
 
+# 在现有依赖下载后补充
+
+# libxml2
+[ ! -d libxml2 ] && git clone --depth 1 --branch v$v_libxml2 https://gitlab.gnome.org/GNOME/libxml2.git libxml2
+
+# openssl
+[ ! -d openssl ] && git clone --depth 1 --branch openssl-$v_openssl https://github.com/openssl/openssl.git openssl
+
+# librtmp
+[ ! -d librtmp ] && git clone --depth 1 --branch $v_librtmp https://git.ffmpeg.org/rtmpdump.git librtmp
+
 # libunibreak
 if [ ! -d libunibreak ]; then
 	mkdir libunibreak
