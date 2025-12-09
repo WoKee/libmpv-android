@@ -31,11 +31,9 @@ cpuflags=
 	--disable-static --enable-shared --enable-{gpl,version3} \
 	--disable-{stripping,doc,programs} \
 	--disable-{muxers,encoders,devices,filters} \
-	--disable-v4l2-m2m \
+	--disable-v4l2-m2m
 	--enable-demuxer=dash \
 	--enable-protocol=https \
-	--enable-protocol=rtp \
-	--enable-protocol=data \
 	--enable-libxml2 \
 
 make -j$cores
