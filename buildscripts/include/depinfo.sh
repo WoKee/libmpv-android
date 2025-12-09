@@ -26,7 +26,7 @@ v_mpv=0.40.0
 
 dep_mbedtls=()
 dep_dav1d=()
-dep_ffmpeg=(mbedtls dav1d)
+dep_ffmpeg=(mbedtls dav1d libxml2)
 dep_freetype2=()
 dep_fribidi=()
 dep_harfbuzz=()
