@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Your Name <you@example.com>
+Date: Thu, 11 Dec 2025 10:00:00 +0800
+Subject: [PATCH] dashdec: allow loading DASH without .mpd extension
+
+Remove the security check that requires URL to contain ".mpd".
+
+---
+ libavformat/dashdec.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
+index xxxxxxx..yyyyyyy 100644
+--- a/libavformat/dashdec.c
++++ b/libavformat/dashdec.c
+@@ -1234,12 +1234,6 @@ static int dash_read_header(AVFormatContext *s)
+     char *url = s->url;
+     int ret;
+
+-    if (!av_stristr(url, ".mpd")) {
+-        av_log(s, AV_LOG_ERROR,
+-               "Filename extension of '%s' is not a common multimedia extension, blocked for security reasons.\n", url);
+-        return AVERROR(EINVAL);
+-    }
+-
+     // ... rest of function ...
