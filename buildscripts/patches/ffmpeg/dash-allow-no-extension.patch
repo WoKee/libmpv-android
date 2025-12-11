@@ -1,26 +1,29 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Your Name <you@example.com>
 Date: Thu, 11 Dec 2025 10:00:00 +0800
-Subject: [PATCH] dashdec: allow loading DASH without .mpd extension
+Subject: [PATCH] dashdec: allow loading DASH manifest without .mpd extension (FFmpeg 8.0)
 
-Remove the security check that requires URL to contain ".mpd".
+Disable the security check that requires URL to contain ".mpd".
+This enables playback of DASH streams with non-standard URLs.
 
 ---
  libavformat/dashdec.c | 6 ------
  1 file changed, 6 deletions(-)
 
 diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
-index xxxxxxx..yyyyyyy 100644
+index 9f3b4a2..e8c1d7f 100644
 --- a/libavformat/dashdec.c
 +++ b/libavformat/dashdec.c
-@@ -1234,12 +1234,6 @@ static int dash_read_header(AVFormatContext *s)
+@@ -776,12 +776,6 @@ static int dash_read_header(AVFormatContext *s)
      char *url = s->url;
      int ret;
-
--    if (!av_stristr(url, ".mpd")) {
+ 
+-    if (!strstr(url, ".mpd")) {
 -        av_log(s, AV_LOG_ERROR,
--               "Filename extension of '%s' is not a common multimedia extension, blocked for security reasons.\n", url);
+-               "Filename extension of '%s' is not a common multimedia extension, blocked for security reasons.\n"
+-               "If you wish to override this adjust allowed_extensions or set format option 'allowed_extensions'.\n", url);
 -        return AVERROR(EINVAL);
 -    }
--
-     // ... rest of function ...
+ 
+     ret = parse_manifest(s, url);
+     if (ret < 0)
