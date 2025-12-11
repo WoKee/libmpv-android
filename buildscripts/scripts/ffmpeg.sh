@@ -26,8 +26,9 @@ cpuflags=
 ../configure \
 	--target-os=android --enable-cross-compile --cross-prefix=$ndk_triple- --cc=$CC \
 	--arch=${ndk_triple%%-*} --cpu=$cpu --pkg-config=pkg-config --nm=llvm-nm \
-	--extra-cflags="-I$prefix_dir/include $cpuflags" --extra-ldflags="-L$prefix_dir/lib" \
-	--enable-{jni,mediacodec,mbedtls,libdav1d} --disable-vulkan \
+	--extra-cflags="-I$prefix_dir/include $cpuflags -DALLOWED_EXTENSIONS=ALL" \
+	--extra-ldflags="-L$prefix_dir/lib" \
+	--enable-{jni,mediacodec,mbedtls,libdav1d,libxml2} --disable-vulkan \
 	--disable-static --enable-shared --enable-{gpl,version3} \
 	--disable-{stripping,doc,programs} \
 	--disable-{muxers,encoders,devices,filters} \
@@ -36,7 +37,6 @@ cpuflags=
 	--enable-protocol=https \
 	--enable-protocol=rtp \
 	--enable-protocol=data \
-	--enable-libxml2 \
 
 make -j$cores
 make DESTDIR="$prefix_dir" install
