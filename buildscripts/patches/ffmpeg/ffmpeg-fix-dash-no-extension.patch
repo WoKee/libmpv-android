@@ -1,0 +1,34 @@
+diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
+index [原文件哈希]..[新文件哈希] 100644
+--- a/libavformat/dashdec.c
++++ b/libavformat/dashdec.c
+@@ -1456,6 +1456,18 @@ static int dash_parse_representation(DASHContext *c, AVIOContext *pb,
+         return AVERROR_INVALIDDATA;
+     }
+ 
++    // 修复无文件后缀时的格式识别
++    if (!rep->format && rep->base_url) {
++        const char *ext = av_strrchr(rep->base_url, '.');
++        if (!ext) {
++            // 尝试从编码格式推断容器类型
++            if (av_codec_get_id(avcodec::codec_ids, rep->codecs)) {
++                enum AVCodecID codec_id = av_codec_get_id(avcodec::codec_ids, rep->codecs);
++                rep->format = av_guess_format(NULL, NULL, avcodec_get_mime_type(codec_id));
++            }
++        }
++    }
++
+     if (!rep->format) {
+         av_log(c->ic, AV_LOG_WARNING, "Could not determine format for representation '%s'\n",
+                rep->id);
+@@ -1503,6 +1515,10 @@ static int dash_parse_adaptation_set(DASHContext *c, AVIOContext *pb,
+         return ret;
+     }
+ 
++    // 继承适配集的编码信息到表示层（增强无后缀识别）
++    if (as->codecs && !rep->codecs)
++        rep->codecs = av_strdup(as->codecs);
++
+     ret = dash_parse_representation(c, pb, rep, as, mpd);
+     if (ret < 0)
+         goto fail;
