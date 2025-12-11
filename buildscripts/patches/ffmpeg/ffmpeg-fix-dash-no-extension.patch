@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Your Name <you@example.com>
 Date: Thu, 11 Dec 2025 12:00:00 +0800
-Subject: [PATCH] dashdec: set allowed_extensions default to "ALL" (FFmpeg 8.0)
+Subject: [PATCH] dashdec: set allowed_extensions default to "ALL" in FFmpeg 8.0
 
 This allows playing DASH manifests without .mpd extension by default.
 Based on commit 140fd653aed8cad774f991ba083e2d01e86420c7.
@@ -11,16 +11,15 @@ Based on commit 140fd653aed8cad774f991ba083e2d01e86420c7.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
-index 9f3b4a254e..e8c1d7f0a1 100644
+index 9f3b4a254e..abc1234567 100644
 --- a/libavformat/dashdec.c
 +++ b/libavformat/dashdec.c
-@@ -1020,7 +1020,7 @@ static const AVOption dash_options[] = {
-     {"live_start_index", "segment index to start live streams at (negative values are from the end)",
-      OFFSET(live_start_index), AV_OPT_TYPE_INT, {.i64 = -2}, INT_MIN, INT_MAX, FLAGS},
-     {"allowed_extensions", "List of file extensions that dash is allowed to open.",
--     OFFSET(allowed_extensions), AV_OPT_TYPE_STRING, {.str = "mpd"}, CHAR_MIN, CHAR_MAX, FLAGS},
-+     OFFSET(allowed_extensions), AV_OPT_TYPE_STRING, {.str = "ALL"}, CHAR_MIN, CHAR_MAX, FLAGS},
+@@ -2354,7 +2354,7 @@ static const AVOption dash_options[] = {
+     {"allowed_extensions", "List of file extensions that dash is allowed to access",
+      OFFSET(allowed_extensions), AV_OPT_TYPE_STRING,
+-     {.str = "mpd"}, INT_MIN, INT_MAX, FLAGS},
++     {.str = "ALL"}, INT_MIN, INT_MAX, FLAGS},
+     {"cenc_decryption_key", "Media decryption key (hex)", OFFSET(cenc_decryption_key), AV_OPT_TYPE_STRING, {.str = NULL}, INT_MIN, INT_MAX, FLAGS},
      {NULL}
  };
-
  
