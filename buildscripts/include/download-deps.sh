@@ -13,7 +13,7 @@ mkdir -p deps && cd deps
 [ ! -d dav1d ] && git clone --depth 1 --branch $v_dav1d https://code.videolan.org/videolan/dav1d.git dav1d
 
 # ffmpeg
-[ ! -d ffmpeg ] && git clone --depth 1 --branch n$v_ffmpeg https://github.com/FFmpeg/FFmpeg.git ffmpeg
+[ ! -d ffmpeg ] && git clone --depth 1 --branch n$v_ffmpeg hhttps://github.com/WoKee/FFmpeg.git ffmpeg
 
 # freetype2
 [ ! -d freetype ] && git clone --depth 1 --branch VER-${v_freetype//./-} https://gitlab.freedesktop.org/freetype/freetype.git freetype
