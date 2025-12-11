@@ -1,23 +1,11 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Your Name <you@example.com>
-Date: Thu, 11 Dec 2025 12:00:00 +0800
-Subject: [PATCH] dashdec: set allowed_extensions default to "ALL" in FFmpeg 8.0
-
-This allows playing DASH manifests without .mpd extension by default.
-Based on commit 140fd653aed8cad774f991ba083e2d01e86420c7.
-
----
- libavformat/dashdec.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
 diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
-index 9f3b4a254e..abc1234567 100644
+index 1f59d3a41c..e8c1d7f0a1 100644
 --- a/libavformat/dashdec.c
 +++ b/libavformat/dashdec.c
 @@ -2354,7 +2354,7 @@ static const AVOption dash_options[] = {
      {"allowed_extensions", "List of file extensions that dash is allowed to access",
       OFFSET(allowed_extensions), AV_OPT_TYPE_STRING,
--     {.str = "mpd"}, INT_MIN, INT_MAX, FLAGS},
+-      {.str = "aac,m4a,m4s,m4v,mov,mp4,webm,ts"}, INT_MIN, INT_MAX, FLAGS},
 +     {.str = "ALL"}, INT_MIN, INT_MAX, FLAGS},
      {"cenc_decryption_key", "Media decryption key (hex)", OFFSET(cenc_decryption_key), AV_OPT_TYPE_STRING, {.str = NULL}, INT_MIN, INT_MAX, FLAGS},
      {NULL}
