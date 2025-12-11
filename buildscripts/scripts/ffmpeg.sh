@@ -37,7 +37,8 @@ cpuflags=
 	--enable-protocol=https \
 	--enable-protocol=rtp \
 	--enable-protocol=data \
-
+	--enable-protocol=file \ 
+	
 make -j$cores
 make DESTDIR="$prefix_dir" install
 
