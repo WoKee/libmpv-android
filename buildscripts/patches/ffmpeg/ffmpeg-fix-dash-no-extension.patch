@@ -2,12 +2,13 @@ diff --git a/libavformat/dashdec.c b/libavformat/dashdec.c
 index 1f59d3a41c..e8c1d7f0a1 100644
 --- a/libavformat/dashdec.c
 +++ b/libavformat/dashdec.c
-@@ -2354,7 +2354,7 @@ static const AVOption dash_options[] = {
-     {"allowed_extensions", "List of file extensions that dash is allowed to access",
-      OFFSET(allowed_extensions), AV_OPT_TYPE_STRING,
--     {.str = "aac,m4a,m4s,m4v,mov,mp4,webm,ts"},
-+     {.str = "ALL"},
-     {"cenc_decryption_key", "Media decryption key (hex)", OFFSET(cenc_decryption_key), AV_OPT_TYPE_STRING, {.str = NULL}, INT_MIN, INT_MAX, FLAGS},
+@@ -2355,7 +2355,7 @@ static int dash_read_seek(AVFormatContext *s, int stream_index, int64_t timestam
+ #define OFFSET(x) offsetof(DASHContext, x)
+ #define FLAGS AV_OPT_FLAG_DECODING_PARAM
+ static const AVOption dash_options[] = {
+-    {"allowed_extensions", "List of file extensions that dash is allowed to access", OFFSET(allowed_extensions), AV_OPT_TYPE_STRING, {.str = "aac,m4a,m4s,m4v,mov,mp4,webm,ts"}, INT_MIN, INT_MAX, FLAGS},
++    {"allowed_extensions", "List of file extensions that dash is allowed to access", OFFSET(allowed_extensions), AV_OPT_TYPE_STRING, {.str = "ALL"}, INT_MIN, INT_MAX, FLAGS},
+     {"cenc_decryption_key", "Media decryption key (hex)", OFFSET(cenc_decryption_key), AV_OPT_TYPE_STRING, {.str = NULL}, INT_MIN, INT_MAX, .flags = FLAGS },
      {NULL}
  };
  
